@@ -29,7 +29,6 @@ public class Order extends AEntity {
             /*cascade = CascadeType.REMOVE,
             optional = false*/)
     @JoinColumn(name = "id_room")
-//    @Column(nullable=true)
     private Room room;
 
         //todo persist вместо save если нету REMOVE!!!
