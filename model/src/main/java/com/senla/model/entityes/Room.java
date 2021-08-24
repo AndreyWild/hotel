@@ -30,57 +30,10 @@ public class Room extends AEntity {
     @Enumerated(value = EnumType.STRING)
     private RoomStars stars = RoomStars.ONE;
 
-    @OneToMany(cascade = CascadeType.ALL,
+    @OneToMany(/*cascade = CascadeType.ALL,*/
+            fetch = FetchType.LAZY,
             mappedBy = "room")
     private List<Order> orders = new ArrayList<>();
-
-    public Integer getNumber() {
-        return number;
-    }
-
-    public void setNumber(Integer number) {
-        this.number = number;
-    }
-
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
-
-    public RoomStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(RoomStatus status) {
-        this.status = status;
-    }
-
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public RoomStars getStars() {
-        return stars;
-    }
-
-    public void setStars(RoomStars stars) {
-        this.stars = stars;
-    }
-
-    public List<Order> getOrders() {
-        return orders;
-    }
-
-    public void setOrders(List<Order> orders) {
-        this.orders = orders;
-    }
 
     public Room() {
     }

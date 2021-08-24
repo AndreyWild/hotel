@@ -44,27 +44,30 @@ public class Hotel {
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-//        Guest guest = new Guest("Bob", 25);
-//        guestDao.save(guest);
+        Guest guest = new Guest("Bob", 25);
+        guestDao.save(guest);
 
-//        Room room = new Room(555, 1,200.0, RoomStars.FOUR);
-//        roomDao.save(room);
+        Room room = new Room(555, 1,200.0, RoomStars.FOUR);
+        roomDao.save(room);
 
-//        Maintenance maintenance = new Maintenance("Cleaning", 200.0);
-//        maintenanceDao.save(maintenance);
+        Maintenance maintenance = new Maintenance("Cleaning", 200.0);
+        maintenanceDao.save(maintenance);
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-        Guest guestGet = guestDao.getById(6L);
-//        guestGet.setId(null);
-        System.out.println(guestGet);
+//        Guest guestGet = guestDao.getById(6L);
+////        guestGet.setId(null);
+//        System.out.println(guestGet);
+////
+//        Room roomGet = roomDao.getById(6L);
+////        roomGet.setId(null);
+//        System.out.println(roomGet);
+////
+//        Maintenance maintenanceGet = maintenanceDao.getById(5L);
+//        System.out.println(maintenanceGet);
 //
-        Room roomGet = roomDao.getById(6L);
-//        roomGet.setId(null);
-        System.out.println(roomGet);
-//
-        Maintenance maintenanceGet = maintenanceDao.getById(5L);
-        System.out.println(maintenanceGet);
+//        Order order = orderDao.getById(4L);
+//        System.out.println(order);
 
         // ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 

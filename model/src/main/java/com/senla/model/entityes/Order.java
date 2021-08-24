@@ -1,47 +1,45 @@
 package com.senla.model.entityes;
 
 import com.senla.model.entityes.enums.OrderStatus;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Entity
 @Table(name = "order")
 public class Order extends AEntity {
 
-    //    //todo persist вместо save!!!
-//    @ManyToOne(cascade = {CascadeType.PERSIST,
-//            CascadeType.MERGE,
-//            CascadeType.REFRESH,
-//            CascadeType.DETACH},
-//            fetch = FetchType.LAZY)
-    @ManyToOne(cascade = CascadeType.REMOVE, optional = false)
-    /*(cascade = CascadeType.ALL)*/
+       //todo persist вместо save если нету REMOVE!!!
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_guest")
-//    @Column(nullable=true)
     private Guest guest;
 
-    //    //todo persist вместо save!!!
+        //todo persist вместо save если нету REMOVE!!!
 //    @ManyToOne(cascade = {CascadeType.PERSIST,
 //            CascadeType.MERGE,
 //            CascadeType.REFRESH,
 //            CascadeType.DETACH},
 //            fetch = FetchType.LAZY)
-    @ManyToOne(cascade = CascadeType.REMOVE, optional = false)
-    /*(cascade = CascadeType.ALL)*/
+    @ManyToOne(fetch = FetchType.LAZY
+            /*cascade = CascadeType.REMOVE,
+            optional = false*/)
     @JoinColumn(name = "id_room")
 //    @Column(nullable=true)
     private Room room;
 
-    //    //todo persist вместо save!!!
+        //todo persist вместо save если нету REMOVE!!!
 //    @OneToMany(cascade = {CascadeType.PERSIST,
 //            CascadeType.MERGE,
 //            CascadeType.REFRESH,
 //            CascadeType.DETACH},
 //            fetch = FetchType.LAZY)
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY
+            /*cascade = CascadeType.ALL*/)
     @JoinTable(name = "ord_maint",
             joinColumns = @JoinColumn(name = "id_order"),
             inverseJoinColumns = @JoinColumn(name = "id_maintenance"))
@@ -56,54 +54,6 @@ public class Order extends AEntity {
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
     private OrderStatus status;
-
-    public Guest getGuest() {
-        return guest;
-    }
-
-    public void setGuest(Guest guest) {
-        this.guest = guest;
-    }
-
-    public Room getRoom() {
-        return room;
-    }
-
-    public void setRoom(Room room) {
-        this.room = room;
-    }
-
-    public List<Maintenance> getMaintenances() {
-        return maintenances;
-    }
-
-    public void setMaintenances(List<Maintenance> maintenances) {
-        this.maintenances = maintenances;
-    }
-
-    public LocalDate getCheckIn() {
-        return checkIn;
-    }
-
-    public void setCheckIn(LocalDate checkIn) {
-        this.checkIn = checkIn;
-    }
-
-    public LocalDate getCheckOut() {
-        return checkOut;
-    }
-
-    public void setCheckOut(LocalDate checkOut) {
-        this.checkOut = checkOut;
-    }
-
-    public OrderStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(OrderStatus status) {
-        this.status = status;
-    }
 
     public Order() {
     }
