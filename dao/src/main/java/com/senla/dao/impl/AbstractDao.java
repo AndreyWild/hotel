@@ -2,6 +2,7 @@ package com.senla.dao.impl;
 
 import com.senla.api.dao.IGenericDao;
 import com.senla.model.entityes.*;
+import lombok.extern.log4j.Log4j;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -11,6 +12,7 @@ import java.io.File;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
+@Log4j
 public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 
     private Class<T> domainClass;
