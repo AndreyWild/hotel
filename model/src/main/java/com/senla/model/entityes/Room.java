@@ -10,7 +10,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "room")
+@Table(name = "rooms")
 public class Room extends AEntity {
 
     @Column(name = "number")

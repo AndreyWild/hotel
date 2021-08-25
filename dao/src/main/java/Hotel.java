@@ -107,7 +107,7 @@ public class Hotel {
 //        session.getTransaction().commit();
 
         session.beginTransaction();
-        Order order = session.get(Order.class, 6L);
+        Order order = session.get(Order.class, 1L);
         order.getGuest().getName();
         order.getRoom().getNumber();
         order.getMaintenances();

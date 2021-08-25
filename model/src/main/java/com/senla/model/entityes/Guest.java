@@ -8,7 +8,7 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "guest")
+@Table(name = "guests")
 public class Guest extends AEntity {
 
     @Column(name = "name")

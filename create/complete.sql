@@ -1,7 +1,7 @@
 -- -----------------------------------------------------
 -- Filling Guests
 -- -----------------------------------------------------
-INSERT INTO hotel.guest (name, age) VALUES
+INSERT INTO hotel.guests (name, age) VALUES
 ('Eddard Stark',50),
 ('Catelyn Stark',46),
 ('Robb Stark',26),
@@ -16,7 +16,7 @@ INSERT INTO hotel.guest (name, age) VALUES
 -- -----------------------------------------------------
 -- Filling Rooms
 -- -----------------------------------------------------
-INSERT INTO hotel.room (number, capacity, price, stars) VALUES
+INSERT INTO hotel.rooms (number, capacity, price, stars) VALUES
 (101, 1, 250.0, 'ONE'),
 (102, 2, 200.0, 'FOUR'),
 (103, 3, 150.0, 'THREE'),
@@ -31,7 +31,7 @@ INSERT INTO hotel.room (number, capacity, price, stars) VALUES
 -- -----------------------------------------------------
 -- Filling Maintenances
 -- -----------------------------------------------------
-INSERT INTO hotel.maintenance (name, price) VALUES
+INSERT INTO hotel.maintenances (name, price) VALUES
 ('Room cleaning',50.0),
 ('Cleaning clothes',10.0),
 ('Shoe shine',5.0),
@@ -46,7 +46,7 @@ INSERT INTO hotel.maintenance (name, price) VALUES
 -- -----------------------------------------------------
 -- Filling Orders
 -- -----------------------------------------------------
-INSERT INTO hotel.order (id_guest, id_room, check_in, check_out)VALUES
+INSERT INTO hotel.orders (id_guest, id_room, check_in, check_out)VALUES
 (1, 1, '2021-01-01', '2021-03-31'),
 (2, 2, '2021-01-02', '2021-03-31'),
 (3, 3, '2021-01-03', '2021-03-31'),

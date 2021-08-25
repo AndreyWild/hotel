@@ -8,7 +8,7 @@ import javax.persistence.Table;
 
 @Data
 @Entity
-@Table(name = "maintenance")
+@Table(name = "maintenances")
 public class Maintenance extends AEntity {
 
     @Column(name = "name")
