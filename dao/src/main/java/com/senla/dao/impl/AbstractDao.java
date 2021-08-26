@@ -6,8 +6,13 @@ import lombok.extern.log4j.Log4j;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.io.File;
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
@@ -17,12 +22,8 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 
     private Class<T> domainClass;
 
-    File file = new File("C:/Users/Andrey/Desktop/SENLA_JavaEE/hotel/dao/src/main/java/hibernate.cfg.xml");
-    private SessionFactory sessionFactory = new Configuration().configure(file)
-//            .addAnnotatedClass(Guest.class)
-//            .addAnnotatedClass(Room.class)
-//            .addAnnotatedClass(Maintenance.class)
-//            .addAnnotatedClass(Order.class)
+    private SessionFactory sessionFactory = new Configuration()
+            .configure("hibernate.cfg.xml")
             .buildSessionFactory();
 
     protected Session getSession() {
@@ -35,11 +36,16 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 
     @Override
     public T save(T entity) {
-        getSession().beginTransaction();
-        getSession().save(entity);
-        getSession().getTransaction().commit();
-        System.out.println(entity.getClass().getSimpleName() + " Create!");
-        return entity;
+        try {
+            getSession().beginTransaction();
+            getSession().save(entity);
+            getSession().getTransaction().commit();
+            System.out.println(entity.getClass().getSimpleName() + " Create!");
+            return entity;
+        } catch (Exception ex) {
+            log.warn(ex);
+            throw new RuntimeException(ex); //YourPersistenceException(ex);
+        }
     }
 
     @Override
@@ -52,7 +58,7 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 
     @Override
     public List<T> getAll() {
-        // todo version 1 WORK!
+        // Hiber realisation WORK!
         getSession().beginTransaction();
         List<T> list = getSession()
                 .createQuery("FROM " + getGenericClass().getSimpleName(), getGenericClass())
@@ -60,19 +66,28 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
         getSession().getTransaction().commit();
         return list;
 
-        // todo version 2 not work
+        // HQL realisation WORK!
 //        getSession().beginTransaction();
-//        return getSession().createQuery("from " + getGenericClass()).list();
+//        return getSession().createQuery("from " + getGenericClass().getSimpleName(), getGenericClass()).list();
 
-        // todo version 3 WORK!
+        // CriteriaQuery realisation WORK!
 //        Session session = getSession();
 //        session.beginTransaction();
 //        CriteriaBuilder builder = session.getCriteriaBuilder();
 //        CriteriaQuery<T> query = builder.createQuery(getGenericClass());
 //        Root<T> root = query.from(getGenericClass());
 //        query.select(root);
-//        TypedQuery<T> result = session.createQuery(query);
-//        return result.getResultList();
+////        TypedQuery<T> result = session.createQuery(query);
+////        return result.getResultList();
+//        return getSession().createQuery(query).getResultList();
+
+    }
+
+    public List<T> findAll() {
+        getSession().beginTransaction();
+        List<T> list = getSession().createCriteria(getGenericClass()).list();
+        getSession().getTransaction().commit();
+        return list;
     }
 
     @Override
@@ -96,7 +111,6 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
         getSession().getTransaction().commit();
     }
 
-
     @Override
     public void update(T entity) {
         getSession().beginTransaction();
@@ -111,5 +125,4 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
         }
         return domainClass;
     }
-
 }

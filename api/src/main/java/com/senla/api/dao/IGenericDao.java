@@ -12,6 +12,8 @@ public interface IGenericDao<T extends AEntity> {
 
     List<T> getAll();
 
+    List<T> findAll();
+
     void delete(T entity);
 
     void deleteById(Long id);
@@ -19,5 +21,4 @@ public interface IGenericDao<T extends AEntity> {
     void deleteAll();
 
     void update(T entity);
-
 }

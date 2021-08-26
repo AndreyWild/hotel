@@ -29,14 +29,14 @@ public class Hotel {
     private static IOrderDao orderDao = new OrderDao();
 
     public static void main(String[] args) {
-        File file = new File("C:\\Users\\Andrey\\Desktop\\SENLA_JavaEE\\hotel\\dao\\src\\main\\java\\hibernate.cfg.xml");
-        SessionFactory sessionFactory = new Configuration().configure(file)
-                .addAnnotatedClass(Order.class)
-                .addAnnotatedClass(Room.class)
-                .addAnnotatedClass(Guest.class)
-                .addAnnotatedClass(Maintenance.class)
-                .buildSessionFactory();
-        Session session = sessionFactory.getCurrentSession();
+        //File file = new File("C:\\Users\\Andrey\\Desktop\\SENLA_JavaEE\\hotel\\dao\\src\\main\\java\\hibernate.cfg.xml");
+//        SessionFactory sessionFactory = new Configuration().configure("hibernate.cfg.xml")
+//                .addAnnotatedClass(Order.class)
+//                .addAnnotatedClass(Room.class)
+//                .addAnnotatedClass(Guest.class)
+//                .addAnnotatedClass(Maintenance.class)
+//                .buildSessionFactory();
+//        Session session = sessionFactory.getCurrentSession();
 ////
 //        session.beginTransaction();
 //        Guest entity = session.get(Guest.class, 2L);
@@ -106,14 +106,21 @@ public class Hotel {
 //        session.save(order);
 //        session.getTransaction().commit();
 
-        session.beginTransaction();
-        Order order = session.get(Order.class, 1L);
-        order.getGuest().getName();
-        order.getRoom().getNumber();
-        order.getMaintenances();
-        session.getTransaction().commit();
+//        session.beginTransaction();
+//        Order order = session.get(Order.class, 1L);
+//        order.getGuest().getName();
+//        order.getRoom().getNumber();
+//        order.getMaintenances();
+//        session.getTransaction().commit();
+//
+//        System.out.println(order);
 
-        System.out.println(order);
+//        List<Maintenance> list = maintenanceDao.findAll();
+//        List<Maintenance> list = maintenanceDao.getAll();
+//        list.forEach(System.out::println);
+
+        Maintenance maintenance = maintenanceDao.getByIdHQL(1L);
+        System.out.println(maintenance);
 
 
 

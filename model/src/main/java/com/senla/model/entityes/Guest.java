@@ -1,12 +1,14 @@
 package com.senla.model.entityes;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "guests")
 public class Guest extends AEntity {
@@ -21,9 +23,6 @@ public class Guest extends AEntity {
             fetch = FetchType.LAZY,
             mappedBy = "guest")
     private List<Order> orders;
-
-    public Guest() {
-    }
 
     public Guest(String name, Integer age) {
         this.name = name;

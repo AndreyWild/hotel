@@ -2,6 +2,7 @@ package com.senla.model.entityes;
 
 import com.senla.model.entityes.enums.OrderStatus;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "orders")
 public class Order extends AEntity {
@@ -20,11 +22,7 @@ public class Order extends AEntity {
     private Guest guest;
 
     //todo persist вместо save если нету REMOVE!!!
-//    @ManyToOne(cascade = {CascadeType.PERSIST,
-//            CascadeType.MERGE,
-//            CascadeType.REFRESH,
-//            CascadeType.DETACH},
-//            fetch = FetchType.LAZY)
+
     @ManyToOne(fetch = FetchType.LAZY
             /*cascade = CascadeType.REMOVE,
             optional = false*/)
@@ -32,11 +30,7 @@ public class Order extends AEntity {
     private Room room;
 
     //todo persist вместо save если нету REMOVE!!!
-//    @OneToMany(cascade = {CascadeType.PERSIST,
-//            CascadeType.MERGE,
-//            CascadeType.REFRESH,
-//            CascadeType.DETACH},
-//            fetch = FetchType.LAZY)
+
     @ManyToMany(fetch = FetchType.LAZY,
             cascade = CascadeType.ALL)
     @JoinTable(name = "ord_maint",
@@ -53,9 +47,6 @@ public class Order extends AEntity {
     @Column(name = "status")
     @Enumerated(value = EnumType.STRING)
     private OrderStatus status;
-
-    public Order() {
-    }
 
     public Order(Guest guest, Room room, LocalDate checkIn, LocalDate checkOut) {
         this.guest = guest;

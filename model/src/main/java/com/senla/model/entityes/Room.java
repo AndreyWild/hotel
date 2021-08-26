@@ -3,12 +3,14 @@ package com.senla.model.entityes;
 import com.senla.model.entityes.enums.RoomStars;
 import com.senla.model.entityes.enums.RoomStatus;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Data
+@NoArgsConstructor
 @Entity
 @Table(name = "rooms")
 public class Room extends AEntity {
@@ -34,9 +36,6 @@ public class Room extends AEntity {
             fetch = FetchType.LAZY,
             mappedBy = "room")
     private List<Order> orders = new ArrayList<>();
-
-    public Room() {
-    }
 
     public Room(Integer number, Integer capacity, Double price, RoomStars stars) {
         this.number = number;
