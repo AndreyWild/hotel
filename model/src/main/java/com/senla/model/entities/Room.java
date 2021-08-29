@@ -1,7 +1,7 @@
-package com.senla.model.entityes;
+package com.senla.model.entities;
 
-import com.senla.model.entityes.enums.RoomStars;
-import com.senla.model.entityes.enums.RoomStatus;
+import com.senla.model.entities.enums.RoomStars;
+import com.senla.model.entities.enums.RoomStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

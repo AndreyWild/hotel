@@ -2,7 +2,7 @@ package com.senla.service.impl;
 
 import com.senla.api.service.IRoomService;
 import com.senla.dao.impl.RoomDao;
-import com.senla.model.entityes.Room;
+import com.senla.model.entities.Room;
 
 import java.util.List;
 

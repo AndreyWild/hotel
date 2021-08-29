@@ -2,7 +2,7 @@ package com.senla.service.impl;
 
 import com.senla.api.service.IMaintenanceService;
 import com.senla.dao.impl.MaintenanceDao;
-import com.senla.model.entityes.Maintenance;
+import com.senla.model.entities.Maintenance;
 
 import java.util.List;
 

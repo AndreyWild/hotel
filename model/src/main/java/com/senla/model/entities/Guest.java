@@ -1,4 +1,4 @@
-package com.senla.model.entityes;
+package com.senla.model.entities;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

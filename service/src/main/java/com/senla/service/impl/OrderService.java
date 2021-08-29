@@ -2,7 +2,7 @@ package com.senla.service.impl;
 
 import com.senla.api.service.IOrderService;
 import com.senla.dao.impl.OrderDao;
-import com.senla.model.entityes.Order;
+import com.senla.model.entities.Order;
 
 import java.util.List;
 

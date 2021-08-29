@@ -2,7 +2,7 @@ package com.senla.service.impl;
 
 import com.senla.api.service.IGuestService;
 import com.senla.dao.impl.GuestDao;
-import com.senla.model.entityes.Guest;
+import com.senla.model.entities.Guest;
 
 import java.util.List;
 

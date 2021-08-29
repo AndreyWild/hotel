@@ -1,4 +1,4 @@
-package com.senla.model.entityes.enums;
+package com.senla.model.entities.enums;
 
 public enum OrderStatus {
     CHECKIN("CHECKIN"), CHECKOUT("CHECKOUT");

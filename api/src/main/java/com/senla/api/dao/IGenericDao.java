@@ -1,6 +1,6 @@
 package com.senla.api.dao;
 
-import com.senla.model.entityes.AEntity;
+import com.senla.model.entities.AEntity;
 
 import java.util.List;
 

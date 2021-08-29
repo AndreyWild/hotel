@@ -1,4 +1,4 @@
-package com.senla.model.entityes;
+package com.senla.model.entities;
 
 import javax.persistence.*;
 

@@ -1,6 +1,6 @@
-package com.senla.model.entityes;
+package com.senla.model.entities;
 
-import com.senla.model.entityes.enums.OrderStatus;
+import com.senla.model.entities.enums.OrderStatus;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

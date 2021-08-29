@@ -6,21 +6,7 @@ import com.senla.dao.impl.GuestDao;
 import com.senla.dao.impl.MaintenanceDao;
 import com.senla.dao.impl.OrderDao;
 import com.senla.dao.impl.RoomDao;
-import com.senla.model.entityes.Guest;
-import com.senla.model.entityes.Maintenance;
-import com.senla.model.entityes.Order;
-import com.senla.model.entityes.Room;
-import com.senla.model.entityes.enums.OrderStatus;
-import com.senla.model.entityes.enums.RoomStars;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.cfg.Configuration;
-
-import javax.persistence.Query;
-import java.io.File;
-import java.time.LocalDate;
-import java.util.List;
+import com.senla.model.entities.Maintenance;
 
 public class Hotel {
     private static IGuestDao guestDao = new GuestDao();
@@ -119,7 +105,7 @@ public class Hotel {
 //        List<Maintenance> list = maintenanceDao.getAll();
 //        list.forEach(System.out::println);
 
-        Maintenance maintenance = maintenanceDao.getByIdHQL(1L);
+        Maintenance maintenance = maintenanceDao.getById(1L);
         System.out.println(maintenance);
 
 
