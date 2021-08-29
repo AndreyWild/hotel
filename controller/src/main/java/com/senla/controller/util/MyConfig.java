@@ -2,8 +2,15 @@ package com.senla.controller.util;
 
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.senla.dao.impl.GuestDao;
+import com.senla.dao.impl.MaintenanceDao;
+import com.senla.dao.impl.OrderDao;
+import com.senla.dao.impl.RoomDao;
 import com.senla.model.entities.Guest;
 import com.senla.service.impl.GuestService;
+import com.senla.service.impl.MaintenanceService;
+import com.senla.service.impl.OrderService;
+import com.senla.service.impl.RoomService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -74,9 +81,49 @@ public class MyConfig {
         return transactionManager;
     }
 
-//    @Bean(name = "guestService")
-//    public GuestService guestService(){return new GuestService();}
-//
-//    @Bean(name = "guest")
-//    public Guest guest(){return new Guest();}
+    @Bean
+    public Guest guest(){
+        return new Guest();
+    }
+
+    @Bean
+    public GuestDao guestDao(){
+        return new GuestDao();
+    }
+
+    @Bean
+    public RoomDao roomDao(){
+        return new RoomDao();
+    }
+
+    @Bean
+    public MaintenanceDao maintenanceDao(){
+        return new MaintenanceDao();
+    }
+
+    @Bean
+    public OrderDao orderDao(){
+        return new OrderDao();
+    }
+
+    @Bean(name = "guestService")
+    public GuestService guestService(){
+        return new GuestService(guestDao());
+    }
+
+    @Bean
+    public RoomService roomService(){
+        return new RoomService(roomDao());
+    }
+
+    @Bean
+    public MaintenanceService maintenanceService(){
+        return new MaintenanceService(maintenanceDao());
+    }
+
+    @Bean
+    public OrderService orderService(){
+        return new OrderService(orderDao());
+    }
+
 }

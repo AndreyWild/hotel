@@ -5,6 +5,6 @@ import com.senla.model.entities.Maintenance;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Repository("maintenanceDao")
+@Repository
 public class MaintenanceDao extends AbstractDao<Maintenance> implements IMaintenanceDao {
 }

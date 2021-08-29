@@ -5,6 +5,6 @@ import com.senla.model.entities.Order;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Repository("orderDao")
+@Repository
 public class OrderDao extends AbstractDao<Order> implements IOrderDao {
 }

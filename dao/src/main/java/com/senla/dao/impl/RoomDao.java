@@ -5,6 +5,6 @@ import com.senla.model.entities.Room;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
-@Repository("roomDao")
+@Repository
 public class RoomDao extends AbstractDao<Room> implements IRoomDao {
 }
