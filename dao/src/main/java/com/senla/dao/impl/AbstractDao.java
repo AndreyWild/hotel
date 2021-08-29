@@ -7,62 +7,57 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.List;
 
-@Log4j
 public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 
     private Class<T> domainClass;
 
-    private SessionFactory sessionFactory = new Configuration()
-            .configure("hibernate.cfg.xml")
-            .buildSessionFactory();
+//    private SessionFactory sessionFactory = new Configuration()
+//            .configure("hibernate.cfg.xml")
+//            .buildSessionFactory();
 
-    protected Session getSession() {
-        try {
-            return sessionFactory.getCurrentSession();
-        } catch (HibernateException e) {
-            return sessionFactory.openSession();
-        }
-    }
+    @Autowired
+    private SessionFactory sessionFactory;
+
+//    protected Session getSession() {
+//        try {
+//            return sessionFactory.getCurrentSession();
+//        } catch (HibernateException e) {
+//            return sessionFactory.openSession();
+//        }
+//    }
 
     @Override
     public T save(T entity) {
-        try {
-            getSession().beginTransaction();
-            getSession().save(entity);
-            getSession().getTransaction().commit();
-            System.out.println(entity.getClass().getSimpleName() + " Create!");
-            return entity;
-        } catch (Exception ex) {
-            log.warn(ex);
-            throw new RuntimeException(ex); //YourPersistenceException(ex);
-        }
+        getCurrentSession().saveOrUpdate(entity);
+        return entity;
     }
 
     @Override
     public T getById(Long id) {
-        getSession().beginTransaction();
-        T entity = getSession().get(getGenericClass(), id);
-        getSession().getTransaction().commit();
-        return entity;
+        return getCurrentSession().get(getGenericClass(), id);
     }
 
     @Override
     public List<T> getAll() {
         // Hiber realisation WORK!
-        getSession().beginTransaction();
-        List<T> list = getSession()
-                .createQuery("FROM " + getGenericClass().getSimpleName(), getGenericClass())
-                .getResultList();
-        getSession().getTransaction().commit();
-        return list;
+//        getSession().beginTransaction();
+//        List<T> list = getSession()
+//                .createQuery("FROM " + getGenericClass().getSimpleName(), getGenericClass())
+//                .getResultList();
+//        getSession().getTransaction().commit();
+//        return list;
 
         // HQL realisation WORK!
 //        getSession().beginTransaction();
-//        return getSession().createQuery("from " + getGenericClass().getSimpleName(), getGenericClass()).list();
+        return getCurrentSession().createQuery("from " + getGenericClass().getSimpleName(), getGenericClass()).list();
 
         // CriteriaQuery realisation WORK!
 //        Session session = getSession();
@@ -78,38 +73,27 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
     }
 
     public List<T> findAll() {
-        getSession().beginTransaction();
-        List<T> list = getSession().createCriteria(getGenericClass()).list();
-        getSession().getTransaction().commit();
-        return list;
+        return getCurrentSession().createCriteria(getGenericClass()).list();
     }
 
     @Override
     public void delete(T entity) {
-        getSession().beginTransaction();
-        getSession().delete(entity);
-        getSession().getTransaction().commit();
+        getCurrentSession().delete(entity);
     }
 
     @Override
     public void deleteById(Long id) {
-        getSession().beginTransaction();
-        getSession().delete(getById(id));
-        getSession().getTransaction().commit();
+        getCurrentSession().delete(getById(id));
     }
 
     @Override
     public void deleteAll() {
-        getSession().beginTransaction();
-        getSession().createQuery("DELETE " + getGenericClass()).executeUpdate();
-        getSession().getTransaction().commit();
+        getCurrentSession().createQuery("DELETE " + getGenericClass()).executeUpdate();
     }
 
     @Override
     public void update(T entity) {
-        getSession().beginTransaction();
-        getSession().update(entity);
-        getSession().getTransaction().commit();
+        getCurrentSession().update(entity);
     }
 
     protected Class<T> getGenericClass() {
@@ -118,5 +102,9 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
             domainClass = (Class<T>) type.getActualTypeArguments()[0];
         }
         return domainClass;
+    }
+
+    protected Session getCurrentSession() {
+        return sessionFactory.getCurrentSession();
     }
 }
