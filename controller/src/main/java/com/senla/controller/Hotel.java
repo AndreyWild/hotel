@@ -16,7 +16,7 @@ public class Hotel {
                 new AnnotationConfigApplicationContext(MyConfig.class);
 
 
-        IGuestService guestService = context.getBean(GuestService.class);
+        IGuestService guestService = context.getBean("guestService",GuestService.class);
 
 //        GuestDao guestDao = context.getBean("guestDao", GuestDao.class);
 

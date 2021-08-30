@@ -2,23 +2,6 @@ package com.senla.controller.util;
 
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
-import com.senla.api.dao.IGuestDao;
-import com.senla.api.dao.IMaintenanceDao;
-import com.senla.api.dao.IOrderDao;
-import com.senla.api.dao.IRoomDao;
-import com.senla.api.service.IGuestService;
-import com.senla.api.service.IMaintenanceService;
-import com.senla.api.service.IOrderService;
-import com.senla.api.service.IRoomService;
-import com.senla.dao.impl.GuestDao;
-import com.senla.dao.impl.MaintenanceDao;
-import com.senla.dao.impl.OrderDao;
-import com.senla.dao.impl.RoomDao;
-import com.senla.model.entities.Guest;
-import com.senla.service.impl.GuestService;
-import com.senla.service.impl.MaintenanceService;
-import com.senla.service.impl.OrderService;
-import com.senla.service.impl.RoomService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -37,7 +20,7 @@ import java.util.Properties;
         "com.senla.service.impl",
         "com.senla.dao.impl"}) // откуда брать компоненты
 @EnableTransactionManagement
-@PropertySource("/myApp.properties")
+@PropertySource("/application.properties")
 public class MyConfig {
 
     @Bean
@@ -84,53 +67,53 @@ public class MyConfig {
 
         return transactionManager;
     }
-
-    @Bean
-    public IGuestDao guestDao() {
-        return new GuestDao();
-    }
-
-    @Bean
-    public IRoomDao roomDao() {
-        return new RoomDao();
-    }
-
-    @Bean
-    public IMaintenanceDao maintenanceDao() {
-        return new MaintenanceDao();
-    }
-
-    @Bean
-    public IOrderDao orderDao() {
-        return new OrderDao();
-    }
-
-    @Bean
-    public IGuestService guestService() {
-        IGuestService iGuestService = new GuestService();
-        iGuestService.setGuestDao(guestDao());
-        return iGuestService;
-    }
-
-    @Bean
-    public IRoomService roomService() {
-        IRoomService iRoomService = new RoomService();
-        iRoomService.setRoomDao(roomDao());
-        return iRoomService;
-    }
-
-    @Bean
-    public IMaintenanceService maintenanceService() {
-        IMaintenanceService iMaintenanceService = new MaintenanceService();
-        iMaintenanceService.setMaintenanceDao(maintenanceDao());
-        return iMaintenanceService;
-    }
-
-    @Bean
-    public IOrderService orderService() {
-        IOrderService iOrderService = new OrderService();
-        iOrderService.setOrderDao(orderDao());
-        return iOrderService;
-    }
+//
+//    @Bean(name = "guestDao")
+//    public IGuestDao guestDao() {
+//        return new GuestDao();
+//    }
+//
+//    @Bean(name = "roomDao")
+//    public IRoomDao roomDao() {
+//        return new RoomDao();
+//    }
+//
+//    @Bean(name = "maintenanceDao")
+//    public IMaintenanceDao maintenanceDao() {
+//        return new MaintenanceDao();
+//    }
+//
+//    @Bean(name = "orderDao")
+//    public IOrderDao orderDao() {
+//        return new OrderDao();
+//    }
+//
+//    @Bean(name = "guestService")
+//    public IGuestService guestService() {
+//        IGuestService iGuestService = new GuestService();
+//        iGuestService.setGuestDao(guestDao());
+//        return iGuestService;
+//    }
+//
+//    @Bean(name = "roomService")
+//    public IRoomService roomService() {
+//        IRoomService iRoomService = new RoomService();
+//        iRoomService.setRoomDao(roomDao());
+//        return iRoomService;
+//    }
+//
+//    @Bean(name = "maintenanceService")
+//    public IMaintenanceService maintenanceService() {
+//        IMaintenanceService iMaintenanceService = new MaintenanceService();
+//        iMaintenanceService.setMaintenanceDao(maintenanceDao());
+//        return iMaintenanceService;
+//    }
+//
+//    @Bean(name = "orderService")
+//    public IOrderService orderService() {
+//        IOrderService iOrderService = new OrderService();
+//        iOrderService.setOrderDao(orderDao());
+//        return iOrderService;
+//    }
 
 }

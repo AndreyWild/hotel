@@ -2,7 +2,6 @@ package com.senla.dao.impl;
 
 import com.senla.api.dao.IGenericDao;
 import com.senla.model.entities.*;
-import lombok.extern.log4j.Log4j;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
