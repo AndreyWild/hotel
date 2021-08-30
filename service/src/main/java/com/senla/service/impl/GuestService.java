@@ -1,5 +1,6 @@
 package com.senla.service.impl;
 
+import com.senla.api.dao.IGuestDao;
 import com.senla.api.service.IGuestService;
 import com.senla.dao.impl.GuestDao;
 import com.senla.model.entities.Guest;
@@ -12,16 +13,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Data
 @Service
 public class GuestService implements IGuestService {
 
-    private GuestDao guestDao; // = new GuestDao();
-
     @Autowired
-    public GuestService(GuestDao guestDao) {
-        this.guestDao = guestDao;
-    }
+    @Setter
+    @Getter
+    private IGuestDao guestDao; // = new GuestDao();
 
     @Override
     @Transactional
@@ -65,4 +63,11 @@ public class GuestService implements IGuestService {
         guestDao.update(entity);
     }
 
+    public IGuestDao getGuestDao() {
+        return guestDao;
+    }
+
+    public void setGuestDao(IGuestDao guestDao) {
+        this.guestDao = guestDao;
+    }
 }

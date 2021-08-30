@@ -1,5 +1,6 @@
 package com.senla.service.impl;
 
+import com.senla.api.dao.IRoomDao;
 import com.senla.api.service.IRoomService;
 import com.senla.dao.impl.RoomDao;
 import com.senla.model.entities.Room;
@@ -14,13 +15,10 @@ import java.util.List;
 @Service
 public class RoomService implements IRoomService {
 
-
-    private RoomDao roomDao;// = new RoomDao();
-
     @Autowired
-    public RoomService(RoomDao roomDao) {
-        this.roomDao = roomDao;
-    }
+    @Setter
+    @Getter
+    private IRoomDao roomDao;// = new RoomDao();
 
     @Override
     @Transactional

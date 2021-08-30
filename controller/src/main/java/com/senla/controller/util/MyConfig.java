@@ -2,6 +2,14 @@ package com.senla.controller.util;
 
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+import com.senla.api.dao.IGuestDao;
+import com.senla.api.dao.IMaintenanceDao;
+import com.senla.api.dao.IOrderDao;
+import com.senla.api.dao.IRoomDao;
+import com.senla.api.service.IGuestService;
+import com.senla.api.service.IMaintenanceService;
+import com.senla.api.service.IOrderService;
+import com.senla.api.service.IRoomService;
 import com.senla.dao.impl.GuestDao;
 import com.senla.dao.impl.MaintenanceDao;
 import com.senla.dao.impl.OrderDao;
@@ -52,11 +60,7 @@ public class MyConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("model.src.main.java.com.senla.model.entities",
-                "api.src.main.java.com.senla.api.dao",
-                "api.src.main.java.com.senla.api.service",
-                "dao.src.main.java.com.senla.dao.impl",
-                "service.src.main.java.com.senla.service.impl");
+        sessionFactory.setPackagesToScan("model.src.main.java.com.senla.model.entities");
 
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
@@ -82,48 +86,51 @@ public class MyConfig {
     }
 
     @Bean
-    public Guest guest(){
-        return new Guest();
-    }
-
-    @Bean
-    public GuestDao guestDao(){
+    public IGuestDao guestDao() {
         return new GuestDao();
     }
 
     @Bean
-    public RoomDao roomDao(){
+    public IRoomDao roomDao() {
         return new RoomDao();
     }
 
     @Bean
-    public MaintenanceDao maintenanceDao(){
+    public IMaintenanceDao maintenanceDao() {
         return new MaintenanceDao();
     }
 
     @Bean
-    public OrderDao orderDao(){
+    public IOrderDao orderDao() {
         return new OrderDao();
     }
 
-    @Bean(name = "guestService")
-    public GuestService guestService(){
-        return new GuestService(guestDao());
+    @Bean
+    public IGuestService guestService() {
+        IGuestService iGuestService = new GuestService();
+        iGuestService.setGuestDao(guestDao());
+        return iGuestService;
     }
 
     @Bean
-    public RoomService roomService(){
-        return new RoomService(roomDao());
+    public IRoomService roomService() {
+        IRoomService iRoomService = new RoomService();
+        iRoomService.setRoomDao(roomDao());
+        return iRoomService;
     }
 
     @Bean
-    public MaintenanceService maintenanceService(){
-        return new MaintenanceService(maintenanceDao());
+    public IMaintenanceService maintenanceService() {
+        IMaintenanceService iMaintenanceService = new MaintenanceService();
+        iMaintenanceService.setMaintenanceDao(maintenanceDao());
+        return iMaintenanceService;
     }
 
     @Bean
-    public OrderService orderService(){
-        return new OrderService(orderDao());
+    public IOrderService orderService() {
+        IOrderService iOrderService = new OrderService();
+        iOrderService.setOrderDao(orderDao());
+        return iOrderService;
     }
 
 }

@@ -1,5 +1,6 @@
 package com.senla.service.impl;
 
+import com.senla.api.dao.IOrderDao;
 import com.senla.api.service.IOrderService;
 import com.senla.dao.impl.OrderDao;
 import com.senla.model.entities.Order;
@@ -14,13 +15,10 @@ import java.util.List;
 @Service
 public class OrderService implements IOrderService {
 
-
-    private OrderDao orderDao;// = new OrderDao();
-
     @Autowired
-    public OrderService(OrderDao orderDao) {
-        this.orderDao = orderDao;
-    }
+    @Setter
+    @Getter
+    private IOrderDao orderDao;// = new OrderDao();
 
     @Override
     @Transactional

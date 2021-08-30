@@ -1,5 +1,6 @@
 package com.senla.service.impl;
 
+import com.senla.api.dao.IMaintenanceDao;
 import com.senla.api.service.IMaintenanceService;
 import com.senla.dao.impl.MaintenanceDao;
 import com.senla.model.entities.Maintenance;
@@ -14,13 +15,10 @@ import java.util.List;
 @Service
 public class MaintenanceService implements IMaintenanceService {
 
-
-    private MaintenanceDao maintenanceDao;// = new MaintenanceDao();
-
     @Autowired
-    public MaintenanceService(MaintenanceDao maintenanceDao) {
-        this.maintenanceDao = maintenanceDao;
-    }
+    @Setter
+    @Getter
+    private IMaintenanceDao maintenanceDao;// = new MaintenanceDao();
 
     @Override
     @Transactional
