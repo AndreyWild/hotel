@@ -17,7 +17,6 @@ import java.util.List;
 public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 
     private Class<T> domainClass;
-
 //    private SessionFactory sessionFactory = new Configuration()
 //            .configure("hibernate.cfg.xml")
 //            .buildSessionFactory();
@@ -32,7 +31,6 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 //            return sessionFactory.openSession();
 //        }
 //    }
-
     @Override
     public T save(T entity) {
         getCurrentSession().saveOrUpdate(entity);
@@ -68,7 +66,6 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 ////        TypedQuery<T> result = session.createQuery(query);
 ////        return result.getResultList();
 //        return getSession().createQuery(query).getResultList();
-
     }
 
     public List<T> findAll() {

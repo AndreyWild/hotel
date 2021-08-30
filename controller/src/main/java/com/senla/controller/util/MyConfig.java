@@ -2,25 +2,28 @@ package com.senla.controller.util;
 
 
 import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import org.apache.tomcat.dbcp.dbcp2.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.beans.PropertyVetoException;
 import java.util.Properties;
 
+
+
+
+//@PropertySource("/application.properties")
+@ComponentScan(basePackages = {"com.senla.api", "com.senla.model.entities", "com.senla.service.impl", "com.senla.dao.impl"}) // откуда брать компоненты
 @Configuration
-@ComponentScan(basePackages = {"com.senla.api",
-        "com.senla.model.entities",
-        "com.senla.service.impl",
-        "com.senla.dao.impl"}) // откуда брать компоненты
 @EnableTransactionManagement
-@PropertySource("/application.properties")
 public class MyConfig {
 
     @Bean
@@ -35,7 +38,6 @@ public class MyConfig {
         } catch (PropertyVetoException e) {
             e.printStackTrace();
         }
-
         return dataSource;
     }
 
@@ -43,7 +45,7 @@ public class MyConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("model.src.main.java.com.senla.model.entities");
+        sessionFactory.setPackagesToScan("com.senla.model.entities");
 
         Properties hibernateProperties = new Properties();
         hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
@@ -51,6 +53,7 @@ public class MyConfig {
         hibernateProperties.setProperty("hibernate.show_sql", "true");
         hibernateProperties.setProperty("hibernate.use_sql_comments", "true");
         hibernateProperties.setProperty("hibernate.current_session_context_class", "thread");
+        hibernateProperties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
 //        hibernateProperties.setProperty("hibernate.connection.pool_size", "3");
 
         sessionFactory.setHibernateProperties(hibernateProperties);
@@ -67,53 +70,62 @@ public class MyConfig {
 
         return transactionManager;
     }
+
+//    @Bean
+//    public PlatformTransactionManager transactionManager(){
+//        JpaTransactionManager transactionManager
+//                = new JpaTransactionManager();
+//        transactionManager.setEntityManagerFactory(
+//                entityManagerFactoryBean().getObject() );
 //
-//    @Bean(name = "guestDao")
-//    public IGuestDao guestDao() {
-//        return new GuestDao();
+//        return transactionManager;
 //    }
 //
-//    @Bean(name = "roomDao")
-//    public IRoomDao roomDao() {
-//        return new RoomDao();
+//    @Bean
+//    public PlatformTransactionManager transactionManager() {
+//        return new DataSourceTransactionManager(dataSource());
+//    }
+
+
+
+//    @Bean
+//    public LocalSessionFactoryBean sessionFactory() {
+//        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+//        sessionFactory.setDataSource(dataSource());
+//        sessionFactory.setPackagesToScan("com.senla.api", "com.senla.model.entities", "com.senla.service.impl", "com.senla.dao.impl" );
+//        sessionFactory.setHibernateProperties(hibernateProperties());
+//
+//        return sessionFactory;
 //    }
 //
-//    @Bean(name = "maintenanceDao")
-//    public IMaintenanceDao maintenanceDao() {
-//        return new MaintenanceDao();
+//    @Bean
+//    public DataSource dataSource() {
+//        BasicDataSource dataSource = new BasicDataSource();
+//        dataSource.setDriverClassName("org.h2.Driver");
+//        dataSource.setUrl("jdbc:h2:mem:hotel;DB_CLOSE_DELAY=-1");
+//        dataSource.setUsername("root");
+//        dataSource.setPassword("root");
+//
+//        return dataSource;
 //    }
 //
-//    @Bean(name = "orderDao")
-//    public IOrderDao orderDao() {
-//        return new OrderDao();
+//    @Bean
+//    public PlatformTransactionManager hibernateTransactionManager() {
+//        HibernateTransactionManager transactionManager
+//                = new HibernateTransactionManager();
+//        transactionManager.setSessionFactory(sessionFactory().getObject());
+//        return transactionManager;
 //    }
 //
-//    @Bean(name = "guestService")
-//    public IGuestService guestService() {
-//        IGuestService iGuestService = new GuestService();
-//        iGuestService.setGuestDao(guestDao());
-//        return iGuestService;
-//    }
+//    private final Properties hibernateProperties() {
+//        Properties hibernateProperties = new Properties();
+//        hibernateProperties.setProperty(
+//                "hibernate.hbm2ddl.auto", "create-drop");
+//        hibernateProperties.setProperty(
+//                "hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 //
-//    @Bean(name = "roomService")
-//    public IRoomService roomService() {
-//        IRoomService iRoomService = new RoomService();
-//        iRoomService.setRoomDao(roomDao());
-//        return iRoomService;
+//        return hibernateProperties;
 //    }
-//
-//    @Bean(name = "maintenanceService")
-//    public IMaintenanceService maintenanceService() {
-//        IMaintenanceService iMaintenanceService = new MaintenanceService();
-//        iMaintenanceService.setMaintenanceDao(maintenanceDao());
-//        return iMaintenanceService;
-//    }
-//
-//    @Bean(name = "orderService")
-//    public IOrderService orderService() {
-//        IOrderService iOrderService = new OrderService();
-//        iOrderService.setOrderDao(orderDao());
-//        return iOrderService;
-//    }
+
 
 }

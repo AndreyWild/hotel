@@ -1,5 +1,6 @@
 package com.senla.model.entities;
 
+
 import javax.persistence.*;
 
 @MappedSuperclass
