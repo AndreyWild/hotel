@@ -17,12 +17,12 @@ import java.util.List;
 public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 
     private Class<T> domainClass;
-//    private SessionFactory sessionFactory = new Configuration()
-//            .configure("hibernate.cfg.xml")
-//            .buildSessionFactory();
+    private SessionFactory sessionFactory = new Configuration()
+            .configure("hibernate.cfg.xml")
+            .buildSessionFactory();
 
-    @Autowired
-    private SessionFactory sessionFactory;
+//    @Autowired
+//    private SessionFactory sessionFactory;
 
 //    protected Session getSession() {
 //        try {

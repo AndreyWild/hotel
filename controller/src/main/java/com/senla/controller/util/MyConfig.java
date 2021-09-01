@@ -21,55 +21,54 @@ import java.util.Properties;
 
 
 //@PropertySource("/application.properties")
-@ComponentScan(basePackages = {"com.senla.api", "com.senla.model.entities", "com.senla.service.impl", "com.senla.dao.impl"}) // откуда брать компоненты
-@Configuration
-@EnableTransactionManagement
+//@ComponentScan(basePackages = {"com.senla.api", "com.senla.model.entities", "com.senla.service.impl", "com.senla.dao.impl"}) // откуда брать компоненты
+//@Configuration
+//@EnableTransactionManagement
 public class MyConfig {
 
-    @Bean
-    public DataSource dataSource() {
-        ComboPooledDataSource dataSource = new ComboPooledDataSource(); // подключение к БД
-        try {
-            dataSource.setDriverClass("com.mysql.cj.jdbc.Driver"); // драйвер
-            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/hotel?autoReconnect=true");
-            dataSource.setUser("root");
-            dataSource.setPassword("root");
-
-        } catch (PropertyVetoException e) {
-            e.printStackTrace();
-        }
-        return dataSource;
-    }
-
-    @Bean
-    public LocalSessionFactoryBean sessionFactory() {
-        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
-        sessionFactory.setDataSource(dataSource());
-        sessionFactory.setPackagesToScan("com.senla.model.entities");
-
-        Properties hibernateProperties = new Properties();
-        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
-        hibernateProperties.setProperty("hibernate.show_sql", "true");
-        hibernateProperties.setProperty("hibernate.show_sql", "true");
-        hibernateProperties.setProperty("hibernate.use_sql_comments", "true");
-        hibernateProperties.setProperty("hibernate.current_session_context_class", "thread");
-        hibernateProperties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
-//        hibernateProperties.setProperty("hibernate.connection.pool_size", "3");
-
-        sessionFactory.setHibernateProperties(hibernateProperties);
-
-        return sessionFactory;
-    }
-
-    @Bean
-    public HibernateTransactionManager transactionManager() {
-        HibernateTransactionManager transactionManager =
-                new HibernateTransactionManager();
-
-        transactionManager.setSessionFactory(sessionFactory().getObject());
-
-        return transactionManager;
-    }
+//    @Bean
+//    public DataSource dataSource() {
+//        ComboPooledDataSource dataSource = new ComboPooledDataSource(); // подключение к БД
+//        try {
+//            dataSource.setDriverClass("com.mysql.cj.jdbc.Driver"); // драйвер
+//            dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/hotel?autoReconnect=true");
+//            dataSource.setUser("root");
+//            dataSource.setPassword("root");
+//
+//        } catch (PropertyVetoException e) {
+//            e.printStackTrace();
+//        }
+//        return dataSource;
+//    }
+//
+//    @Bean
+//    public LocalSessionFactoryBean sessionFactory() {
+//        LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
+//        sessionFactory.setDataSource(dataSource());
+//        sessionFactory.setPackagesToScan("com.senla.model.entities");
+//
+//        Properties hibernateProperties = new Properties();
+//        hibernateProperties.setProperty("hibernate.dialect", "org.hibernate.dialect.MySQL5Dialect");
+//        hibernateProperties.setProperty("hibernate.show_sql", "true");
+//        hibernateProperties.setProperty("hibernate.use_sql_comments", "true");
+//        hibernateProperties.setProperty("hibernate.current_session_context_class", "thread");
+//        hibernateProperties.setProperty("hibernate.enable_lazy_load_no_trans", "true");
+////        hibernateProperties.setProperty("hibernate.connection.pool_size", "3");
+//
+//        sessionFactory.setHibernateProperties(hibernateProperties);
+//
+//        return sessionFactory;
+//    }
+//
+//    @Bean
+//    public HibernateTransactionManager transactionManager() {
+//        HibernateTransactionManager transactionManager =
+//                new HibernateTransactionManager();
+//
+//        transactionManager.setSessionFactory(sessionFactory().getObject());
+//
+//        return transactionManager;
+//    }
 
 //    @Bean
 //    public PlatformTransactionManager transactionManager(){
