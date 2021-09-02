@@ -2,6 +2,7 @@ package com.senla.model.entities;
 
 import com.senla.model.entities.enums.RoomStars;
 import com.senla.model.entities.enums.RoomStatus;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,6 +12,7 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "rooms")
 public class Room extends AEntity {
