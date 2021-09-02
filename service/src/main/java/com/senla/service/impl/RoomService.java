@@ -13,6 +13,7 @@ import java.util.List;
 @Transactional
 public class RoomService implements IRoomService {
 
+    @Autowired
     private IRoomDao roomDao;
 //
 //    @Autowired

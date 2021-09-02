@@ -13,6 +13,8 @@ import java.util.List;
 @Transactional
 public class OrderService implements IOrderService {
 
+
+    @Autowired
     private IOrderDao orderDao;
 
 //    @Autowired

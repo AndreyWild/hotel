@@ -14,6 +14,7 @@ import java.util.List;
 @Transactional
 public class GuestService implements IGuestService {
 
+    @Autowired
     private IGuestDao guestDao;
 
     @Override

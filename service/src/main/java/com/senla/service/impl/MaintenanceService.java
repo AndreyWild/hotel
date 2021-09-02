@@ -16,6 +16,7 @@ import java.util.List;
 @Transactional
 public class MaintenanceService implements IMaintenanceService {
 
+    @Autowired
     private IMaintenanceDao maintenanceDao;// = new MaintenanceDao();
 
 //    @Autowired
