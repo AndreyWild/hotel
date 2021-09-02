@@ -68,7 +68,7 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
     public List<T> findAll() {
 
 //        return getCurrentSession().createCriteria(getGenericClass()).list();
-        return entityManager.createQuery("from " + domainClass.getName())
+        return entityManager.createQuery("FROM " + getGenericClass().getSimpleName())
                 .getResultList();
     }
 

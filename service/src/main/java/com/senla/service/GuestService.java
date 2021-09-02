@@ -34,6 +34,11 @@ public class GuestService implements IGuestService {
     }
 
     @Override
+    public List<Guest> findAll() {
+        return guestDao.findAll();
+    }
+
+    @Override
     public void delete(Guest entity) {
         guestDao.delete(entity);
     }

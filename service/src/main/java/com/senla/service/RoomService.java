@@ -33,6 +33,11 @@ public class RoomService implements IRoomService {
     }
 
     @Override
+    public List<Room> findAll() {
+        return roomDao.findAll();
+    }
+
+    @Override
     public void delete(Room entity) {
         roomDao.delete(entity);
     }

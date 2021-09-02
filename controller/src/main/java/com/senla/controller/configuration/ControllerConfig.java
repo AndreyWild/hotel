@@ -5,6 +5,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 
 @ComponentScan("com.senla") // откуда брать компоненты
-@EnableTransactionManagement
+//@EnableTransactionManagement
 public class ControllerConfig {
 }

@@ -33,6 +33,11 @@ public class MaintenanceService implements IMaintenanceService {
     }
 
     @Override
+    public List<Maintenance> findAll() {
+        return maintenanceDao.findAll();
+    }
+
+    @Override
     public void delete(Maintenance entity) {
         maintenanceDao.delete(entity);
     }

@@ -12,6 +12,8 @@ public interface IGenericService<T extends AEntity> {
 
     List<T> getAll();
 
+    List<T> findAll();
+
     void delete(T entity);
 
     void deleteById(Long id);

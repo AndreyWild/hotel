@@ -32,6 +32,11 @@ public class OrderService implements IOrderService {
     }
 
     @Override
+    public List<Order> findAll() {
+        return orderDao.findAll();
+    }
+
+    @Override
     public void delete(Order entity) {
         orderDao.delete(entity);
     }
