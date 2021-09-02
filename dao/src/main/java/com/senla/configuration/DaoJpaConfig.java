@@ -17,7 +17,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-//@ComponentScan("com.senla")
+@ComponentScan("com.senla")
 //@ComponentScan(basePackages = {"com.senla.api", "com.senla.model.entities", "com.senla.service.impl", "com.senla.dao.impl"})
 @Configuration
 @PropertySource("classpath:application.properties")

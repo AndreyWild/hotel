@@ -1,10 +1,8 @@
-package com.senla.service.impl;
+package com.senla.service;
 
 import com.senla.api.dao.IMaintenanceDao;
 import com.senla.api.service.IMaintenanceService;
-import com.senla.dao.impl.MaintenanceDao;
 import com.senla.model.entities.Maintenance;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,11 +16,6 @@ public class MaintenanceService implements IMaintenanceService {
 
     @Autowired
     private IMaintenanceDao maintenanceDao;// = new MaintenanceDao();
-
-//    @Autowired
-//    public MaintenanceService(IMaintenanceDao maintenanceDao) {
-//        this.maintenanceDao = maintenanceDao;
-//    }
 
     @Override
     public void save(Maintenance entity) {

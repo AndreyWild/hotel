@@ -1,4 +1,4 @@
-package com.senla.service.impl;
+package com.senla.service;
 
 import com.senla.api.dao.IGuestDao;
 import com.senla.api.service.IGuestService;

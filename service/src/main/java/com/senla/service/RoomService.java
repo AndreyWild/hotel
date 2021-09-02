@@ -1,25 +1,21 @@
-package com.senla.service.impl;
+package com.senla.service;
 
 import com.senla.api.dao.IRoomDao;
 import com.senla.api.service.IRoomService;
 import com.senla.model.entities.Room;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Service
+@Component
 @Transactional
 public class RoomService implements IRoomService {
 
     @Autowired
     private IRoomDao roomDao;
-//
-//    @Autowired
-//    public RoomService(IRoomDao roomDao) {
-//        this.roomDao = roomDao;
-//    }
 
     @Override
     public void save(Room entity) {

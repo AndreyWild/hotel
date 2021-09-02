@@ -1,4 +1,4 @@
-package com.senla.dao.impl;
+package com.senla.dao;
 
 import com.senla.api.dao.IRoomDao;
 import com.senla.model.entities.Room;
