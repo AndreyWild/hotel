@@ -3,24 +3,26 @@ package com.senla.service.impl;
 import com.senla.api.dao.IRoomDao;
 import com.senla.api.service.IRoomService;
 import com.senla.model.entities.Room;
-import lombok.Data;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Data
 @Service
 @Transactional
 public class RoomService implements IRoomService {
 
-    @Autowired
     private IRoomDao roomDao;
+//
+//    @Autowired
+//    public RoomService(IRoomDao roomDao) {
+//        this.roomDao = roomDao;
+//    }
 
     @Override
-    public Room save(Room entity) {
-        return roomDao.save(entity);
+    public void save(Room entity) {
+        roomDao.save(entity);
     }
 
     @Override
@@ -41,11 +43,6 @@ public class RoomService implements IRoomService {
     @Override
     public void deleteById(Long id) {
         roomDao.deleteById(id);
-    }
-
-    @Override
-    public void deleteAll() {
-        roomDao.deleteAll();
     }
 
     @Override

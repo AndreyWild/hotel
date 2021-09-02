@@ -11,17 +11,21 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Data
+
 @Service
 @Transactional
 public class MaintenanceService implements IMaintenanceService {
 
-    @Autowired
     private IMaintenanceDao maintenanceDao;// = new MaintenanceDao();
 
+//    @Autowired
+//    public MaintenanceService(IMaintenanceDao maintenanceDao) {
+//        this.maintenanceDao = maintenanceDao;
+//    }
+
     @Override
-    public Maintenance save(Maintenance entity) {
-        return maintenanceDao.save(entity);
+    public void save(Maintenance entity) {
+        maintenanceDao.save(entity);
     }
 
     @Override
@@ -42,11 +46,6 @@ public class MaintenanceService implements IMaintenanceService {
     @Override
     public void deleteById(Long id) {
         maintenanceDao.deleteById(id);
-    }
-
-    @Override
-    public void deleteAll() {
-        maintenanceDao.deleteAll();
     }
 
     @Override

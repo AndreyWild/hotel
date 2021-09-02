@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IGenericDao<T extends AEntity> {
 
-    T save(T entity);
+    void save(T entity);
 
     T getById(Long id);
 
@@ -17,8 +17,6 @@ public interface IGenericDao<T extends AEntity> {
     void delete(T entity);
 
     void deleteById(Long id);
-
-    void deleteAll();
 
     void update(T entity);
 }
