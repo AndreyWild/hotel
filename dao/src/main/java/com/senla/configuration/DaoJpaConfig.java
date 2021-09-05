@@ -10,12 +10,14 @@ import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.JpaVendorAdapter;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
-@ComponentScan("com.senla")
+//@ComponentScan("com.senla")
 @Configuration
 @PropertySource("classpath:application.properties")
 public class DaoJpaConfig {
@@ -45,10 +47,12 @@ public class DaoJpaConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManager() {
-        LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+        LocalContainerEntityManagerFactoryBean entityManager =
+                new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource());
         entityManager.setPackagesToScan("com.senla.model.entities");
+
         JpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
         entityManager.setJpaVendorAdapter(jpaVendorAdapter);
         entityManager.setJpaProperties(getJpaProperties());
@@ -61,6 +65,14 @@ public class DaoJpaConfig {
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
+
+//    @Bean
+//    public PlatformTransactionManager transactionManager() {
+//        JpaTransactionManager transactionManager = new JpaTransactionManager();
+//        transactionManager.setEntityManagerFactory(entityManagerFactory().getObject());
+//
+//        return transactionManager;
+//    }
 
     private Properties getJpaProperties() {
         Properties properties = new Properties();

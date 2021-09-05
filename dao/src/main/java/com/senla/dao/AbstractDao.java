@@ -14,8 +14,8 @@ import java.util.List;
 
 public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 
-    @PersistenceContext(type = PersistenceContextType.TRANSACTION)
-    private EntityManager entityManager;
+    @PersistenceContext(type = PersistenceContextType.EXTENDED)
+    protected EntityManager entityManager;
 
 
     private Class<T> domainClass;
@@ -84,7 +84,8 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
     @Override
     public void deleteById(Long id) {
 //        getCurrentSession().delete(getById(id));
-        entityManager.remove(getById(id));
+        T entity = getById(id);
+        delete( entity );
     }
 
 
