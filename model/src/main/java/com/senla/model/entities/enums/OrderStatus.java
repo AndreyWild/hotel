@@ -1,6 +1,7 @@
 package com.senla.model.entities.enums;
 
 public enum OrderStatus {
+
     CHECKIN("CHECKIN"), CHECKOUT("CHECKOUT");
 
     private String value;

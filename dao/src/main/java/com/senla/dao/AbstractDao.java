@@ -6,8 +6,10 @@ import com.senla.model.entities.*;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.PersistenceContextType;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.Root;
 import java.util.List;
 
 public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
@@ -52,17 +54,18 @@ public abstract class AbstractDao<T extends AEntity> implements IGenericDao<T> {
 //        Session session = getSession();
 //        session.beginTransaction();
 //        CriteriaBuilder builder = session.getCriteriaBuilder();
-//        CriteriaQuery<T> query = builder.createQuery(getGenericClass());
-//        Root<T> root = query.from(getGenericClass());
-//        query.select(root);
-////        TypedQuery<T> result = session.createQuery(query);
+//        CriteriaQuery<T> criteriaQuery = builder.createQuery(getGenericClass());
+//        Root<T> root = criteriaQuery.from(getGenericClass());
+//        criteriaQuery.select(root);
+////        TypedQuery<T> result = session.createQuery(criteriaQuery);
 ////        return result.getResultList();
-//        return getSession().createQuery(query).getResultList();
-
+//        return getSession().createQuery(criteriaQuery).getResultList();
         CriteriaBuilder builder = entityManager.getCriteriaBuilder();
-        CriteriaQuery<T> query = builder.createQuery(getGenericClass());
-        return entityManager.createQuery(query).getResultList();
-
+        CriteriaQuery<T> criteriaQuery = builder.createQuery(getGenericClass());
+        Root<T> root = criteriaQuery.from(getGenericClass());
+        criteriaQuery.select(root);
+        TypedQuery<T> query = entityManager.createQuery(criteriaQuery);
+        return query.getResultList();
     }
 
     public List<T> findAll() {

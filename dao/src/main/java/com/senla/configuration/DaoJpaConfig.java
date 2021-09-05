@@ -1,7 +1,5 @@
 package com.senla.configuration;
 
-
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,7 +16,6 @@ import javax.sql.DataSource;
 import java.util.Properties;
 
 @ComponentScan("com.senla")
-//@ComponentScan(basePackages = {"com.senla.api", "com.senla.model.entities", "com.senla.service.impl", "com.senla.dao.impl"})
 @Configuration
 @PropertySource("classpath:application.properties")
 public class DaoJpaConfig {
@@ -43,12 +40,12 @@ public class DaoJpaConfig {
     private String hibernateTempUseJdbcMetadataDefaults;
 
     @Bean
-    public DataSource dataSource(){
+    public DataSource dataSource() {
         return new DriverManagerDataSource(URL, username, password);
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManager(){
+    public LocalContainerEntityManagerFactoryBean entityManager() {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(dataSource());
         entityManager.setPackagesToScan("com.senla.model.entities");
@@ -59,13 +56,13 @@ public class DaoJpaConfig {
     }
 
     @Bean
-    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory){
+    public JpaTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
         JpaTransactionManager transactionManager = new JpaTransactionManager();
         transactionManager.setEntityManagerFactory(entityManagerFactory);
         return transactionManager;
     }
 
-    private Properties getJpaProperties(){
+    private Properties getJpaProperties() {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", hibernateHbm2ddlAuto);
         properties.setProperty("hibernate.dialect", hibernateDialect);
@@ -73,6 +70,5 @@ public class DaoJpaConfig {
         properties.setProperty("hibernate.enable_lazy_load_no_trans", hibernateLazyLoadNoTrans);
         properties.setProperty("hibernate.temp.use._jdbc_metadata_defaults", hibernateTempUseJdbcMetadataDefaults);
         return properties;
-
     }
 }

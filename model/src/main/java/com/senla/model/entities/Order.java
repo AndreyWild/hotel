@@ -18,7 +18,6 @@ import java.util.List;
 public class Order extends AEntity {
 
     //todo persist вместо save если нету REMOVE!!!
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_guest")
     private Guest guest;
