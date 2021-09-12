@@ -1,6 +1,7 @@
 package com.senla.model.entities.enums;
 
 public enum RoomStars {
+
     ONE("ONE"), TWO("TWO"), THREE("THREE"), FOUR("FOUR"), FIVE("FIVE");
 
     private String value;

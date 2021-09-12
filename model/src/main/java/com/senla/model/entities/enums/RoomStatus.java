@@ -1,6 +1,7 @@
 package com.senla.model.entities.enums;
 
 public enum RoomStatus {
+
     OPEN("OPEN"), CLOSED("CLOSED"), REPAIR("CLOSED");
 
     private String value;

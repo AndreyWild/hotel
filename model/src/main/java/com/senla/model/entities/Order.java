@@ -1,6 +1,7 @@
 package com.senla.model.entities;
 
 import com.senla.model.entities.enums.OrderStatus;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -11,12 +12,12 @@ import java.util.List;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "orders")
 public class Order extends AEntity {
 
     //todo persist вместо save если нету REMOVE!!!
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "id_guest")
     private Guest guest;

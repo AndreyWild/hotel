@@ -1,5 +1,6 @@
 package com.senla.model.entities;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,6 +10,7 @@ import javax.persistence.Table;
 
 @Data
 @NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "maintenances")
 public class Maintenance extends AEntity {
@@ -18,11 +20,6 @@ public class Maintenance extends AEntity {
 
     @Column(name = "price")
     private Double price;
-
-    public Maintenance(String name, Double price) {
-        this.name = name;
-        this.price = price;
-    }
 
     public Maintenance(Maintenance maintenance) {
         setId(maintenance.getId());
